@@ -35,7 +35,9 @@ def get_relation_matrix(ranking: list) -> list:
     return relation_matrix
 
 
-def task(ranking_l: list, ranking_r: list) -> list:
+def task(ranking_l: str, ranking_r: str) -> list:
+    ranking_l = json.loads(ranking_l)
+    ranking_r = json.loads(ranking_r)
     relation_matrix_l = get_relation_matrix(ranking_l)
     relation_matrix_r = get_relation_matrix(ranking_r)
 
@@ -45,8 +47,3 @@ def task(ranking_l: list, ranking_r: list) -> list:
     conflicts = np.where(core == 0)
     conflict_pairs = [[str(conflict[0] + 1), str(conflict[1] + 1)] for conflict in conflicts if conflict[0] < conflict[1]]
     return json.dumps(conflict_pairs)
-
-
-ranking_l_ex = ["1", ["2", "3"], "4", ["5", "6", "7"], "8", "9", "10"]
-ranking_r_ex = [["1", "2"], ["3", "4", "5"], "6", "7", "9", ["8", "10"]]
-print(task(ranking_l_ex, ranking_r_ex))
