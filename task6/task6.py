@@ -16,7 +16,7 @@ def get_comparison_matrices(input_col):
 
 
 def task(json_input):
-    input_list = np.array(json.loads(json_input))
+    input_list = np.array(json.loads(json_input)).T
     comparison_matrices = []
     for input_col in input_list.T:
         comparison_matrices.append(get_comparison_matrices(input_col))
@@ -39,4 +39,4 @@ def task(json_input):
     return json.dumps(k1.tolist())
 
 
-# print(task('[[1,2,1.5],[3,2,3],[2,2,1.5]]'))
+# print(task('[[1,3,2],[2,2,2],[1.5,3,1.5]]'))
